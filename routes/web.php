@@ -28,6 +28,9 @@ use App\Http\Controllers\PostlistController;
 Route::get('/postlist', [PostlistController::class, 'index']);
 
 Route::get('/postlist/create', [PostlistController::class, 'create']);
+
 Route::post('/postlist', [PostlistController::class, 'store']);
+
+Route::get('/postlist/{post}', [PostlistController::class, 'show']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

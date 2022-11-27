@@ -9,7 +9,11 @@ class PostlistController extends Controller
 {
     public function index()
     {
-        return view('postList.index');
+        $postslist = postlist::all();
+
+        return view('postList.index', [
+            'postlist' => $postslist
+        ]);
     }
     public function create()
     {
@@ -26,5 +30,11 @@ class PostlistController extends Controller
         ]);
 
         return redirect('/postlist');
+    }
+    public function show(postlist $post)
+    {
+        return view('postlist.show', [
+            'post' => $post
+        ]);
     }
 }
