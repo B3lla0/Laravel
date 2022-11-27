@@ -37,4 +37,21 @@ class PostlistController extends Controller
             'post' => $post
         ]);
     }
+    public function edit(postlist $post)
+    {
+        return view('postlist.edit', [
+            'post' => $post
+        ]);
+    }
+    public function update(postlist $post)
+    {
+        request('title');
+        $post->update([
+            'title' => request('postTitle'),
+            'body' => request('postBody')
+        ]);
+        return redirect('/postlist/'.$post->id);
+        // return redirect()->route('/postlist', [$post]);
+        // return redirect()->route('/postlist', [$post]);
+    }
 }

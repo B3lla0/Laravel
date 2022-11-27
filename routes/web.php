@@ -33,4 +33,8 @@ Route::post('/postlist', [PostlistController::class, 'store']);
 
 Route::get('/postlist/{post}', [PostlistController::class, 'show']);
 
+Route::get('/postlist/{post}/edit', [PostlistController::class, 'edit']);
+
+Route::put('/postlist/{post}', [PostlistController::class, 'update']);
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
