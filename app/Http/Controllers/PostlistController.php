@@ -22,12 +22,17 @@ class PostlistController extends Controller
     }
     public function store(Request $request)
     {
-        $request->input('postTitle');
-        $request->input('postBody');
+        request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+        // $request->input('postTitle');
+        // $request->input('postBody');
 
+        // $post = postlist::create(request(['title', 'body']));
         $postlist = postlist::create([
-            'title' => $request->input('postTitle'),
-            'body' => $request->input('postBody'),
+            'title' => request('postTitle'),
+            'body' => request('postBody'),
         ]);
 
         return redirect('/postlist');
@@ -46,7 +51,11 @@ class PostlistController extends Controller
     }
     public function update(postlist $post)
     {
-        request('title');
+        // request('title');
+        request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
         $post->update([
             'title' => request('postTitle'),
             'body' => request('postBody')
