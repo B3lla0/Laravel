@@ -17,6 +17,7 @@
             </div>
             <div>
                 <button type="submit" class="btn btn-outline-primary">작성</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="location.href='/postlist'">취소</button>
             </div>
         </form>
     </div>

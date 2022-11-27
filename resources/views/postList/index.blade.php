@@ -5,7 +5,10 @@
 @endsection
 
 @section('content')
-    <h3>Post List</h3>
+    <div class="d-flex justify-content-between mb-2">
+        <h3>Post List</h3>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='/postlist/create'">Create</button>
+    </div>
     <ul>
         {{-- {{ $postlist }} --}}
         @foreach($postlist as $post)

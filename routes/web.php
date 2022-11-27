@@ -37,4 +37,4 @@ Route::get('/postlist/{post}/edit', [PostlistController::class, 'edit']);
 
 Route::put('/postlist/{post}', [PostlistController::class, 'update']);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::delete('/postlist/{post}', [PostlistController::class, 'destroy']);

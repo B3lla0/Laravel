@@ -9,7 +9,8 @@ class PostlistController extends Controller
 {
     public function index()
     {
-        $postslist = postlist::all();
+        // $postslist = postlist::all();
+        $postslist = postlist::latest()->get();
 
         return view('postList.index', [
             'postlist' => $postslist
@@ -51,7 +52,11 @@ class PostlistController extends Controller
             'body' => request('postBody')
         ]);
         return redirect('/postlist/'.$post->id);
-        // return redirect()->route('/postlist', [$post]);
-        // return redirect()->route('/postlist', [$post]);
+    }
+    public function destroy(postlist $post)
+    {
+        $post->delete();
+
+        return redirect('/postlist');
     }
 }
