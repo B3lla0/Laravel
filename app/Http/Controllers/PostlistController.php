@@ -22,17 +22,13 @@ class PostlistController extends Controller
     }
     public function store(Request $request)
     {
-        request()->validate([
-            'title' => 'required',
-            'body' => 'required'
+        $validated = $request->validate([
+            'postTitle' => 'bail|required',
+            'postBody' => 'required|min:5',
         ]);
-        // $request->input('postTitle');
-        // $request->input('postBody');
-
-        // $post = postlist::create(request(['title', 'body']));
         $postlist = postlist::create([
-            'title' => request('postTitle'),
-            'body' => request('postBody'),
+            'title' => $request->input('postTitle'),
+            'body' => $request->input('postBody'),
         ]);
 
         return redirect('/postlist');

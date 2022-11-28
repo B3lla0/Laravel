@@ -9,15 +9,15 @@
             @csrf
             <div class="row">
                 <label for="postTitle">Title</label>
-                <input type="text" id="postTitle" class="col d-block border border-1 rounded @error('title') border-danger @enderror" name="postTitle" required>
-                @error('title')
+                <input type="text" id="postTitle" class="col d-block border border-1 rounded @error('postTitle') border-danger @enderror" name="postTitle" value="{{ old('postTitle') }}">
+                @error('postTitle')
                     <small class="text-danger">*{{ $message }}</small>
                 @enderror
             </div>
             <div class="row mb-3">
                 <label for="postBody">Body</label>
-                <textarea name="postBody" id="postBody" class="col d-block border border-1 rounded @error('body') border-danger @enderror" cols="30" rows="10" required></textarea>
-                @error('body')
+                <textarea name="postBody" id="postBody" class="col d-block border border-1 rounded @error('postBody') border-danger @enderror" cols="30" rows="10" required>{{ old('postBody') }}</textarea>
+                @error('postBody')
                     <small class="text-danger">*{{ $message }}</small>
                 @enderror
             </div>
