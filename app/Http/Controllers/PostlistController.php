@@ -49,8 +49,8 @@ class PostlistController extends Controller
     {
         // request('title');
         request()->validate([
-            'title' => 'required',
-            'body' => 'required'
+        'postTitle' => 'bail|required',
+        'postBody' => 'required|min:5',
         ]);
         $post->update([
             'title' => request('postTitle'),
