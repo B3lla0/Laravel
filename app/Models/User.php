@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function owns(postlist $post)
+    {
+        return auth()->id() == $post->user_id;
+    }
 }

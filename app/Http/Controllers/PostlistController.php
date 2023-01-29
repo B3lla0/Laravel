@@ -44,19 +44,26 @@ class PostlistController extends Controller
         // if(auth()->id() != $post->user_id){
         //     abort(403);
         // }
-        abort_if(auth()->id() != $post->user_id, 403);
+        // abort_if(auth()->id() != $post->user_id, 403);
+        // abort_if(!auth()->user()->owns($post), 403);
+        abort_unless(auth()->user()->owns($post), 403);
+        // User::find(1);
         return view('postlist.show', [
             'post' => $post
         ]);
     }
     public function edit(postlist $post)
     {
+        abort_unless(auth()->user()->owns($post), 403);
+
         return view('postlist.edit', [
             'post' => $post
         ]);
     }
     public function update(postlist $post)
     {
+        abort_unless(auth()->user()->owns($post), 403);
+
         // request('title');
         request()->validate([
         'postTitle' => 'bail|required',
@@ -70,6 +77,8 @@ class PostlistController extends Controller
     }
     public function destroy(postlist $post)
     {
+        abort_unless(auth()->user()->owns($post), 403);
+        
         $post->delete();
 
         return redirect('/postlist');
