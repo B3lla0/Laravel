@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\PostlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\HomeController;
+
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/hello', [HomeController::class, 'hello']);
 
 Route::get('/contact', [HomeController::class, 'contact']);
 
-use App\Http\Controllers\ProjectController;
 Route::get('/projects', [ProjectController::class, 'index']);
 Auth::routes();
 
-use App\Http\Controllers\PostlistController;
 Route::prefix('postlist')->middleware('auth')->group(function(){
   Route::get('/', [PostlistController::class, 'index']);
   
