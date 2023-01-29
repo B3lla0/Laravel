@@ -10,7 +10,7 @@ class PostlistController extends Controller
     public function index()
     {
         // $postslist = postlist::all();
-        $postslist = postlist::latest()->get();
+        $postslist = postlist::latest()->where('user_id', auth()-> id())->get();
 
         return view('postList.index', [
             'postlist' => $postslist
@@ -28,7 +28,6 @@ class PostlistController extends Controller
         ]);
         
         $values = request(['title', 'body']);
-
         $values['user_id'] = auth()->id();
 
         // $postlist = postlist::create($values);
