@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return auth()->id() == $post->user_id;
     }
+
+    public function postlist() {
+        return $this->hasMany(postList::class);
+    }
 }
