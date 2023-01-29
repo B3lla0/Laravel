@@ -26,15 +26,26 @@ class PostlistController extends Controller
             'postTitle' => 'bail|required',
             'postBody' => 'required|min:5',
         ]);
+        
+        $values = request(['title', 'body']);
+
+        $values['user_id'] = auth()->id();
+
+        // $postlist = postlist::create($values);
         $postlist = postlist::create([
             'title' => $request->input('postTitle'),
             'body' => $request->input('postBody'),
+            'user_id' => implode(" ", $values),
         ]);
 
-        return redirect('/postlist');
+        return redirect('/postlist/'.$postlist->id);
     }
     public function show(postlist $post)
     {
+        // if(auth()->id() != $post->user_id){
+        //     abort(403);
+        // }
+        abort_if(auth()->id() != $post->user_id, 403);
         return view('postlist.show', [
             'post' => $post
         ]);

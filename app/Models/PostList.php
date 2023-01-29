@@ -10,5 +10,5 @@ class PostList extends Model
     use HasFactory;
 
     protected $table = 'postlist';
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'user_id'];
 }
