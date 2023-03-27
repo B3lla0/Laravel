@@ -17,7 +17,7 @@ use App\Http\Controllers\PostlistController;
 */
 
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [PostlistController::class, 'index']);
 
 Route::get('/hello', [HomeController::class, 'hello']);
 
@@ -29,11 +29,14 @@ Auth::routes();
 Route::prefix('postlist')->middleware('auth')->group(function(){
   Route::get('/', [PostlistController::class, 'index']);
   
-  Route::get('/create', [PostlistController::class, 'create']);
+  Route::post('form', function (Illuminate\Http\Request $request) {
+    @request->etc();
+  });
+  // Route::get('/create', [PostlistController::class, 'create']);
   
   Route::post('/', [PostlistController::class, 'store']);
   
-  Route::get('/{post}', [PostlistController::class, 'show']);
+  Route::get('/{post}', [PostlistController::class, 'show'])->middleware('checkage');
   
   Route::get('/{post}/edit', [PostlistController::class, 'edit']);
   
@@ -41,6 +44,10 @@ Route::prefix('postlist')->middleware('auth')->group(function(){
   
   Route::delete('/{post}', [PostlistController::class, 'destroy']);
 });
+// Route::resource('postlist', 'PostlistController')->middleware('auth');
+// Route::name('postlist.')->prefix('postlist')->group(function(){
+
+// });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
